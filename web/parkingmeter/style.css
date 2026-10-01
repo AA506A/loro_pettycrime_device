@@ -1,0 +1,379 @@
+/*
+ * LoRo Scripts · loro_pettycrime_device/web/parkingmeter/style.css
+ * © 2026 LoRo Scripts. All rights reserved.
+ * Redistribution, resale, re-upload or modification without written
+ * permission from LoRo Scripts is strictly prohibited.
+ * يُمنع إعادة نشر أو بيع أو تعديل هذا السكربت بدون إذن من متجر LoRo Scripts.
+ * Discord: https://discord.gg/sfHsAwZvDG
+ */
+/* ===== Base Screen ===== */
+
+.device-screen {
+  position: relative;
+  background: #060a10;
+  box-shadow: inset 0 0 100px rgba(217, 38, 38, 0.02);
+}
+
+/* ===== Safe area ===== */
+.safe-area {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 5%;
+  bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.screen-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* Grid background overlay */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217, 38, 38, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 38, 38, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Dark vignette */
+.device-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Horizontal sweep line */
+.sweep-overlay {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.sweep-line {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(217, 38, 38, 0.08),
+    rgba(217, 38, 38, 0.2),
+    rgba(217, 38, 38, 0.08),
+    transparent);
+  box-shadow: 0 0 20px rgba(217, 38, 38, 0.15);
+  animation: sweepDown 6s linear infinite;
+}
+
+/* ===== Glow Effects ===== */
+
+.glow-cyan {
+  text-shadow: 0 0 8px rgba(217, 38, 38, 0.5);
+}
+
+.glow-cyan-strong {
+  text-shadow:
+    0 0 8px  rgba(217, 38, 38, 0.7),
+    0 0 25px rgba(217, 38, 38, 0.3),
+    0 0 50px rgba(217, 38, 38, 0.1);
+}
+
+.glow-red {
+  text-shadow:
+    0 0 8px  rgba(226, 89, 89, 0.7),
+    0 0 25px rgba(226, 89, 89, 0.3);
+}
+
+.glow-amber {
+  text-shadow:
+    0 0 8px  rgba(217, 38, 38, 0.7),
+    0 0 25px rgba(217, 38, 38, 0.3);
+}
+
+.glow-bar-cyan {
+  box-shadow: 0 0 10px rgba(217, 38, 38, 0.5), 0 0 25px rgba(217, 38, 38, 0.15);
+}
+
+/* ===== Radar ===== */
+
+.radar-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.radar-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 38, 38, 0.08);
+}
+
+.radar-ring-1 { inset: 0; }
+.radar-ring-2 { inset: 20%; }
+.radar-ring-3 { inset: 40%; }
+
+.radar-crosshair-h,
+.radar-crosshair-v {
+  position: absolute;
+  background: rgba(217, 38, 38, 0.06);
+}
+
+.radar-crosshair-h {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-0.5px);
+}
+
+.radar-crosshair-v {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-0.5px);
+}
+
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.radar-sweep::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 2px;
+  transform-origin: left center;
+  background: linear-gradient(to right, rgba(217, 38, 38, 0.6), transparent);
+  box-shadow: 0 0 8px rgba(217, 38, 38, 0.3);
+}
+
+.radar-sweep-trail {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.radar-sweep-trail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 50deg,
+    transparent,
+    rgba(217, 38, 38, 0.08) 40deg,
+    transparent 41deg
+  );
+}
+
+.radar-blip {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(217, 38, 38, 0.9);
+  box-shadow: 0 0 6px rgba(217, 38, 38, 0.7), 0 0 14px rgba(217, 38, 38, 0.3);
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease-out, top 0.3s ease-out;
+}
+
+.radar-blip-secondary {
+  width: 7px;
+  height: 7px;
+  background: rgba(217, 38, 38, 0.5);
+  box-shadow: 0 0 4px rgba(217, 38, 38, 0.4), 0 0 10px rgba(217, 38, 38, 0.15);
+}
+
+.radar-blip-looted {
+  width: 7px;
+  height: 7px;
+  background: rgba(226, 89, 89, 0.4);
+  box-shadow: 0 0 4px rgba(226, 89, 89, 0.3), 0 0 8px rgba(226, 89, 89, 0.1);
+  opacity: 0.6;
+}
+
+.radar-blip.ping {
+  animation: blipPing 0.4s ease-out;
+}
+
+@keyframes blipPing {
+  0%   { box-shadow: 0 0 6px rgba(217, 38, 38,0.7), 0 0 14px rgba(217, 38, 38,0.3); transform: translate(-50%,-50%) scale(1); }
+  30%  { box-shadow: 0 0 12px rgba(217, 38, 38,1), 0 0 30px rgba(217, 38, 38,0.6); transform: translate(-50%,-50%) scale(1.8); }
+  100% { box-shadow: 0 0 6px rgba(217, 38, 38,0.7), 0 0 14px rgba(217, 38, 38,0.3); transform: translate(-50%,-50%) scale(1); }
+}
+
+.radar-center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(217, 38, 38, 0.5);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px rgba(217, 38, 38, 0.4);
+}
+
+/* ===== Pulse & Blink ===== */
+
+.pulse-dot {
+  animation: pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(217, 38, 38, 0.6);
+}
+
+.blink {
+  animation: blink 0.7s step-end infinite;
+}
+
+/* ===== Boot ===== */
+
+.boot-flicker {
+  animation: bootFlicker 0.12s ease-in-out 4;
+}
+
+.boot-hex {
+  animation: hexFadeIn 0.4s ease-out both;
+}
+
+/* ===== Terminal ===== */
+
+.terminal-scroll::-webkit-scrollbar { width: 3px; }
+.terminal-scroll::-webkit-scrollbar-track { background: rgba(217, 38, 38, 0.02); }
+.terminal-scroll::-webkit-scrollbar-thumb { background: rgba(217, 38, 38, 0.15); border-radius: 3px; }
+
+/* ===== Result ===== */
+
+.result-icon {
+  animation: resultPulse 1.2s ease-in-out infinite;
+}
+
+.result-glitch {
+  animation: glitchText 2.5s infinite;
+}
+
+.glitch-bg {
+  animation: glitchFlash 1.5s ease-in-out infinite;
+}
+
+/* ===== Data ticker at screen bottom ===== */
+
+.data-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.data-ticker-inner {
+  display: inline-block;
+  animation: tickerScroll 20s linear infinite;
+}
+
+/* ===== Keyframes ===== */
+
+@keyframes sweepDown {
+  0%   { top: -6px; }
+  100% { top: 100%; }
+}
+
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes blipPulse {
+  0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  50%      { opacity: 0.4; transform: translate(-50%, -50%) scale(0.7); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.3; transform: scale(0.85); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes bootFlicker {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.05; }
+  100% { opacity: 1; }
+}
+
+@keyframes hexFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes resultPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.08); opacity: 0.8; }
+}
+
+@keyframes glitchText {
+  0%, 100% { transform: translate(0); }
+  8%       { transform: translate(-2px, 1px); }
+  16%      { transform: translate(2px, -1px); }
+  24%      { transform: translate(0); }
+  80%      { transform: translate(0); }
+  84%      { transform: translate(-1px, 2px); opacity: 0.6; }
+  88%      { transform: translate(2px, -1px); opacity: 1; }
+}
+
+@keyframes glitchFlash {
+  0%, 100% { opacity: 0; }
+  48%      { opacity: 0; }
+  50%      { opacity: 0.5; }
+  52%      { opacity: 0; }
+  82%      { opacity: 0; }
+  84%      { opacity: 0.3; }
+  86%      { opacity: 0; }
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ===== Noise flicker on screen ===== */
+
+.device-screen::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(217, 38, 38, 0.008);
+  pointer-events: none;
+  z-index: 98;
+  animation: screenNoise 5s ease-in-out infinite;
+}
+
+@keyframes screenNoise {
+  0%, 100% { opacity: 0; }
+  40%      { opacity: 0; }
+  42%      { opacity: 1; }
+  44%      { opacity: 0; }
+  90%      { opacity: 0; }
+  92%      { opacity: 0.6; }
+  94%      { opacity: 0; }
+}

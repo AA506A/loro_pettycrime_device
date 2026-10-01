@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+  LoRo Scripts · loro_pettycrime_device/web/selector/index.html
+  © 2026 LoRo Scripts. All rights reserved.
+  Redistribution, resale, re-upload or modification without written
+  permission from LoRo Scripts is strictly prohibited.
+  يُمنع إعادة نشر أو بيع أو تعديل هذا السكربت بدون إذن من متجر LoRo Scripts.
+  Discord: https://discord.gg/sfHsAwZvDG
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=512, height=512, initial-scale=1.0">
+  <title>Module Selector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script defer src="../alpinejs@3.15.11.js"></script>
+  <style>[x-cloak] { display: none !important; }</style>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js"></script>
+</head>
+<body x-data="selector" x-cloak>
+  <div class="safe-area" x-show="visible" x-transition.opacity.duration.200ms>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-line"></div>
+      <div class="header-title">SELECT SOFTWARE</div>
+      <div class="header-line"></div>
+    </div>
+
+    <!-- Module list -->
+    <div class="module-list">
+      <template x-for="(mod, i) in modules" :key="mod.id">
+        <div
+          class="module-item"
+          :class="{ 'selected': i === selectedIndex, 'confirmed': confirmed && i === selectedIndex }"
+        >
+          <div class="item-indicator">
+            <span x-show="i === selectedIndex" class="caret">&gt;</span>
+          </div>
+          <div class="item-body">
+            <div class="item-label" x-text="mod.label"></div>
+            <div class="item-id" x-text="'/' + mod.id"></div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- Footer instructions -->
+    <div class="footer">
+      <span class="key">&#x2191;&#x2193;</span> <span class="hint">SELECT</span>
+      <span class="sep">|</span>
+      <span class="key">ENTER</span> <span class="hint">CONFIRM</span>
+    </div>
+
+  </div>
+</body>
+</html>

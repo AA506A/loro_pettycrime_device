@@ -1,0 +1,11 @@
+/*
+ * LoRo Scripts · loro_pettycrime_device/web/parkingmeter/src.css
+ * © 2026 LoRo Scripts. All rights reserved.
+ * Redistribution, resale, re-upload or modification without written
+ * permission from LoRo Scripts is strictly prohibited.
+ * يُمنع إعادة نشر أو بيع أو تعديل هذا السكربت بدون إذن من متجر LoRo Scripts.
+ * Discord: https://discord.gg/sfHsAwZvDG
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

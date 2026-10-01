@@ -1,0 +1,15 @@
+{
+  "name": "loro_pettydevice-web",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:vending && npm run build:parkingmeter",
+    "build:vending": "npx tailwindcss -i ./vending/src.css -o ./vending/dist.css --minify -c ./vending/tailwind.config.js",
+    "build:parkingmeter": "npx tailwindcss -i ./parkingmeter/src.css -o ./parkingmeter/dist.css --minify -c ./parkingmeter/tailwind.config.js",
+    "watch": "concurrently \"npm run watch:vending\" \"npm run watch:parkingmeter\"",
+    "watch:vending": "npx tailwindcss -i ./vending/src.css -o ./vending/dist.css --watch -c ./vending/tailwind.config.js",
+    "watch:parkingmeter": "npx tailwindcss -i ./parkingmeter/src.css -o ./parkingmeter/dist.css --watch -c ./parkingmeter/tailwind.config.js"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

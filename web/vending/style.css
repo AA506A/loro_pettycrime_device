@@ -1,0 +1,184 @@
+/*
+ * LoRo Scripts · loro_pettycrime_device/web/vending/style.css
+ * © 2026 LoRo Scripts. All rights reserved.
+ * Redistribution, resale, re-upload or modification without written
+ * permission from LoRo Scripts is strictly prohibited.
+ * يُمنع إعادة نشر أو بيع أو تعديل هذا السكربت بدون إذن من متجر LoRo Scripts.
+ * Discord: https://discord.gg/sfHsAwZvDG
+ */
+/* ===== CRT Screen ===== */
+
+.crt-screen {
+  position: relative;
+  box-shadow: inset 0 0 80px rgba(0, 255, 65, 0.03);
+}
+
+.crt-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ===== Glow Effects ===== */
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.glow-text-strong {
+  text-shadow:
+    0 0 10px rgba(0, 255, 65, 0.6),
+    0 0 30px rgba(0, 255, 65, 0.25),
+    0 0 60px rgba(0, 255, 65, 0.1);
+}
+
+.glow-text-red {
+  text-shadow:
+    0 0 10px rgba(255, 32, 32, 0.6),
+    0 0 30px rgba(255, 32, 32, 0.25);
+}
+
+.glow-bar {
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.5);
+}
+
+/* ===== Pulse & Blink ===== */
+
+.pulse-dot {
+  animation: pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+}
+
+.blink {
+  animation: blink 0.8s step-end infinite;
+}
+
+/* ===== Boot ===== */
+
+.boot-flicker {
+  animation: bootFlicker 0.15s ease-in-out 3;
+}
+
+.boot-line {
+  animation: fadeSlideIn 0.3s ease-out both;
+}
+
+/* ===== Result ===== */
+
+.result-pulse {
+  animation: resultPulse 1.2s ease-in-out infinite;
+}
+
+/* ===== Failure Glitch ===== */
+
+.glitch-text {
+  animation: glitchText 2s infinite;
+}
+
+.glitch-flash {
+  animation: glitchFlash 1.5s ease-in-out infinite;
+}
+
+/* ===== Scanline ===== */
+
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.scan-line {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, transparent, rgba(0,255,65,0.15), rgba(0,255,65,0.3), rgba(0,255,65,0.15), transparent);
+  animation: scanLine 4s linear infinite;
+}
+
+/* ===== Scrollbar ===== */
+
+.terminal-scroll::-webkit-scrollbar { width: 4px; }
+.terminal-scroll::-webkit-scrollbar-track { background: rgba(0,255,65,0.03); }
+.terminal-scroll::-webkit-scrollbar-thumb { background: rgba(0,255,65,0.2); }
+
+/* ===== Keyframes ===== */
+
+@keyframes scanLine {
+  0%   { top: -4px; }
+  100% { top: 100%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.3; transform: scale(0.9); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes bootFlicker {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.1; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes resultPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.1); opacity: 0.75; }
+}
+
+@keyframes glitchText {
+  0%, 100% { transform: translate(0); }
+  10%      { transform: translate(-3px, 1px); }
+  20%      { transform: translate(3px, -1px); }
+  30%      { transform: translate(0); }
+  80%      { transform: translate(0); }
+  85%      { transform: translate(-2px, 2px); opacity: 0.7; }
+  90%      { transform: translate(2px, -1px); opacity: 1; }
+}
+
+@keyframes glitchFlash {
+  0%, 100% { opacity: 0; }
+  45%      { opacity: 0; }
+  50%      { opacity: 0.6; }
+  55%      { opacity: 0; }
+  80%      { opacity: 0; }
+  85%      { opacity: 0.4; }
+  90%      { opacity: 0; }
+}
+
+/* ===== Screen Flicker ===== */
+
+.crt-screen::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 255, 65, 0.015);
+  pointer-events: none;
+  z-index: 98;
+  animation: screenFlicker 4s ease-in-out infinite;
+}
+
+@keyframes screenFlicker {
+  0%, 100% { opacity: 0; }
+  47%      { opacity: 0; }
+  48%      { opacity: 1; }
+  49%      { opacity: 0; }
+  50%      { opacity: 1; }
+  51%      { opacity: 0; }
+  95%      { opacity: 0; }
+  96%      { opacity: 0.5; }
+  97%      { opacity: 0; }
+}
